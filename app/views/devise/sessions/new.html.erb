@@ -1,0 +1,24 @@
+
+<div id="myModal" class="container">
+  <div class="card card-container modal-dialog">
+    <div class="modal-header">
+      <%= link_to "&times;".html_safe, public_index_path, class: "close" %>
+      <h4 class="modal-title">Login</h4>
+    </div>
+
+    <div class="margin-2em">
+      <%= form_for resource, as: resource_name,url: session_path(resource_name), html: {:class => "form-signin"} do |f| %>
+      <%= f.email_field :email, class: "form-control", placeholder: "Email", option: {required: "required"} %>
+      <%= f.password_field :password , class: "form-control" , placeholder: "Password", required:"required" %>
+
+      <div id="remember" class="checkbox">
+        <%= f.label :remember_me do %>
+        <%= f.check_box :remember_me  %>Remember Me
+        <% end %>
+      </div>
+      <%= f.submit 'Sign in' , class: "btn btn-lg btn-primary btn-block btn-signin" %>
+      <% end %>
+      <p><%= render "devise/shared/links" %></p>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'pages/index'
+  get 'pages/index', to: 'pages#index', as: 'public_index'
+  get 'pages/game'
+  root 'pages#index'
+
+
+  devise_for :users, :controllers => { registrations: 'registrations' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
