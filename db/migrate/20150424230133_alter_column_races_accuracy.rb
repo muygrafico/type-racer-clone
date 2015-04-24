@@ -7,7 +7,7 @@ class AlterColumnRacesAccuracy < ActiveRecord::Migration
           end
         end
         def self.down
-          change_table :products do |t|
+          change_table :races do |t|
             t.change :accuracy, :decimal
           end
         end
