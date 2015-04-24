@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wpm: 1
+  accuracy: 9.99
+  finished_time: 1
+  user_id: 
+
+two:
+  wpm: 1
+  accuracy: 9.99
+  finished_time: 1
+  user_id: 
