@@ -10,6 +10,20 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
+ @import "devise";
+ @import url('http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300');
+
+
+
+$cream-green-dark: rgb(0,128,128);
+$salmon: rgb(250,128,114);
+$cream-white: rgb(255,248,222);
+$cream-green: rgb(129,216,208);
+$light-poop: rgb(190,155,123);
+$blue: #006681;
