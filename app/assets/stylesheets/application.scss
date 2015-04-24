@@ -21,9 +21,16 @@
 
 
 
-$cream-green-dark: rgb(0,128,128);
-$salmon: rgb(250,128,114);
-$cream-white: rgb(255,248,222);
-$cream-green: rgb(129,216,208);
-$light-poop: rgb(190,155,123);
-$blue: #006681;
+ $cream-green-dark: rgb(0,128,128);
+ $salmon: rgb(250,128,114);
+ $cream-white: rgb(255,248,222);
+ $cream-green: rgb(129,216,208);
+ $light-poop: rgb(190,155,123);
+ $blue: #006681;
+
+ .game{
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  margin-top: 100px;
+}

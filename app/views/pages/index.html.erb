@@ -2,9 +2,13 @@
 <div class="container">
   <h1>Pages#index</h1>
   <p>Find me in app/views/pages/index.html.erb</p>
+
+  <% if user_signed_in? %>
+  <%= link_to "PLAY", races_index_path, class: "btn btn-default btn-lg" %>
+  <% else %>
   <%= link_to "New account", new_user_registration_path, class: "btn btn-default btn-lg" %>
   <a class="btn btn-default btn-lg btn-login" data-toggle="modal" data-target="#login">Login</a>
-
+  <% end %>
 </div>
 
 <div id="login" class="container modal fade">

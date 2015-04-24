@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  get 'pages/index'
+  get 'races/index'
+  get 'races/create'
+
   get 'pages/index', to: 'pages#index', as: 'public_index'
-  get 'pages/game'
   root 'pages#index'
 
 
