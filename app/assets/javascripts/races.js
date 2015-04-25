@@ -5,9 +5,8 @@ $( document ).ready(function() {
   var word_to_array = function(textContainer){ return array = $(textContainer).text().split(' ') }
 
 
-  var
-  first_string = word_to_array('#text-to-input')[0];
-  // console.log(word_to_array('#text-to-input')[0][2]);
+  var strings = word_to_array('#text-to-input');
+  // console.log(strings_array);
 
   var Timer = function() {
     this.time = 0;
@@ -26,30 +25,41 @@ $( document ).ready(function() {
     }
   }
   var timer = new Timer();
+
   $( "body" ).on( "click", ".start-time", function() {
     timer.start();
   });
   $( "body" ).on( "click", ".stop-time", function() {
     console.log( "current time at click: " + timer.stop() );
   });
+
+
+
+  var checkWord = function(array, word){
+    word =  word.replace(/\s/g, '');
+    if ( array  == word ) { return true } else { return false }
+  }
+
+  var counter = 0;
+
   $("#GameInput").keyup(function(e){
 
+
     var val = $( this ).val();
-    if (val === first_string) {
+    console.log( val + " : " + strings[counter] );
+    word_validator = checkWord(strings[counter] , val) ;
+    console.log( word_validator );
+    // console.log("Correct!");
 
-      console.log("Correct!");
+     if( e.which == 32  && word_validator == true ) {
+      clearInput( $( this ) );
+      counter ++;
+    }
 
-      $(this).keyup(function(e){
-       console.log("event2: " + e.which);
-       if(e.which == 32 ) {
-         clearInput($( this ));
-       }
-     })
-
-    };
-
-
-
-    console.log(val);
+      // console.log(val);
   });
-});
+
+
+
+
+  });
