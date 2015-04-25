@@ -8,9 +8,10 @@ $( document ).ready(function() {
 
   var strings = word_to_array('#text-to-input');
 
-  var Race = function(next_words_p, gameText) {
+  var Race = function(next_words_p, gameText,user_id) {
     this.points = 0;
     this.time = 0;
+    this.user_id = $( '.userData' ).data('user');
     this.viewableNextWords = 10;
     this.strings = word_to_array( gameText );
     this.next_words_p = next_words_p;
@@ -24,18 +25,23 @@ $( document ).ready(function() {
     word =  word.replace(/\s/g, '');
     if ( array  == word ) { return true } else { return false }
 
-    },
-    word_to_array : function( textContainer ){
-      return array = $(textContainer).text().split(' ')
-    },
-    limitView: function(){
-      this.stringsLength = this.strings.length;
-      if ( this.stringsLength - this.points < this.viewableNextWords ) {
-        this.viewableNextWords = this.stringsLength - this.points ;
+  },
+word_to_array : function( textContainer ){
+  return array = $(textContainer).text().split(' ')
+},
+limitView: function(){
+  this.stringsLength = this.strings.length;
+  if ( this.stringsLength - this.points < this.viewableNextWords ) {
+    this.viewableNextWords = this.stringsLength - this.points ;
         // console.log( this.viewableNextWords );
-        if ( this.viewableNextWords == 1 ) {
+        if ( this.viewableNextWords < 1 ) {
 
           console.log('finished');
+          this.elapsed = this.stop();
+          wpm = ( this.stringsLength / (this.elapsed/60) )
+          console.log(wpm);
+          $("#sec").html( "WPM: " + wpm );
+          console.log( "WPM:" + wpm + " " + "finished_time:" + this.elapsed + "user_id:" + this.user_id );
         };
       };
     },
@@ -47,7 +53,7 @@ $( document ).ready(function() {
         if ( i == 0 ) {
           viewHelperText +=  "<strong>" +this.strings[this.points + i] + "</strong> "
         } else {
-        viewHelperText += this.strings[this.points + i] + " "
+          viewHelperText += this.strings[this.points + i] + " "
         }
       };
 
@@ -58,27 +64,52 @@ $( document ).ready(function() {
     start : function(){
 
       var that = this;
-      window.setInterval(function(){
+      that.time = 0;
+      this.timer =  setInterval(function(){
         that.time += 1000;
-        elapsed = Math.floor(that.time / 1000) / 1;
-        console.log(elapsed)
+        that.elapsed = Math.floor(that.time / 1000) / 1;
+        console.log(that.elapsed)
+        $("#sec").html( that.elapsed + " :segs" );
       }, 1000);
     },
 
     stop : function(){
 
-      clearInterval( this );
+      clearInterval( this.timer );
       elapsed = Math.floor(this.time / 1000) / 1;
       return elapsed;
 
     }
   }
 
-  userRace = new Race('.next-word', '#gameText');
+
+
+
+
+  var counterBack = function(count_time){
+    var timer = setInterval(function(){
+      count_time -- ;
+      $("#sec").html( '0' + count_time );
+      if (count_time == 0 ) {
+       clearInterval( timer );
+       $("#sec").html( "START!" );
+       $("#gameInput").prop("disabled", false);
+       $("#gameInput").focus();
+       userRace.start();
+     };
+   }, 1000);
+  }
+
 
   $( "body" ).on( "click", ".start-time", function() { userRace.start() });
   $( "body" ).on( "click", ".stop-time", function() { console.log( "current time at click: " + userRace.stop() ) });
+  $( "body" ).on( "click", ".start-game", function() {
+      // $("#gameInput").prop("disabled", false);
+      counterBack(5);
+    });
 
+
+  userRace = new Race( '.next-word', '#gameText' );
 
 
   $("#gameInput").keyup(function(e){

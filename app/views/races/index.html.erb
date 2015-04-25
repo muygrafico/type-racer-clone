@@ -5,18 +5,22 @@
       <h2>Game</h2>
       <p>
         <%=  @user.name %>
-        <%=  @user.id %>
+        <%=  user = @user.id %>
       </p>
-      <p id="gameText">May your hands always be busy, may your feet always be swift. </p><hr>
-
+      <p id="gameText">Quality humor doesn't just deliver one gag and then tax the audience.</p>
+      <hr>
+      <p id="sec">05</p>
       <p class="next-word"></p>
       <div class="form-group">
-      <input class="form-control" type="text" rows="3" name="gameInput" id="gameInput" placeholder="Type the text above"></input>
+        <input class="form-control" type="text" rows="3" name="gameInput" disabled='disabled' id="gameInput" placeholder="Type the text above"></input>
       </div>
-      <a class="btn btn-default stop-time pull-left">STOP TIME</a>
-      <a class="btn btn-default start-time pull-left">START TIME</a>
+      <!-- <a class="btn btn-default stop-time pull-left">STOP TIME</a>
+      <a class="btn btn-default start-time pull-left">START TIME</a> -->
+      <a class="btn btn-primary start-game pull-left">START GAME</a>
       <%= link_to "End Race", public_index_path, class: "btn btn-danger pull-right" %>
 
     </div>
   </div>
 </div>
+
+<%= content_tag :div, class: "userData", data: {user: @user.id } do %><% end %>
