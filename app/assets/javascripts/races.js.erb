@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-
+  console.log('ITS LOADING RACES.JS.ERB');
   var clearInput = function(who){ who.val('') }
 
   var word_to_array = function( textContainer ){
@@ -38,10 +38,21 @@ limitView: function(){
 
           console.log('finished');
           this.elapsed = this.stop();
-          wpm = ( this.stringsLength / (this.elapsed/60) )
+          wpm = Math.round( ( this.stringsLength / (this.elapsed/60) ) )
           console.log(wpm);
           $("#sec").html( "WPM: " + wpm );
-          console.log( "WPM:" + wpm + " " + "finished_time:" + this.elapsed + "user_id:" + this.user_id );
+          // console.log( "WPM:" + wpm + " " + "finished_time:" + this.elapsed + "user_id:" + this.user_id );
+
+          var item = { race: {"wpm" : wpm, "accuracy" : 0, "finished_time": this.elapsed, "user_id": this.user_id }};
+          $.ajax({
+            url: "/races",
+            type: "POST",
+            data: item,
+            success: function(){
+            console.log("data sent");
+            }
+          })
+
         };
       };
     },
@@ -128,3 +139,8 @@ limitView: function(){
   });
 
 });
+
+
+
+
+

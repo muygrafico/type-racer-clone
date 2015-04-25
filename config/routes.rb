@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'races/index'
-  get 'races/create'
+
+  resources :races , only: [ :index, :create ]
 
   get 'users/search'
   get 'pages/index', to: 'pages#index', as: 'public_index'
