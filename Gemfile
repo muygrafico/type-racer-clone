@@ -31,6 +31,8 @@ gem 'font-awesome-sass', '~> 4.3.0'
 
 gem "acts_as_follower"
 
+gem 'faker', '~> 1.4.3'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
