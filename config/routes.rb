@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   get 'pages/index'
   get 'pages/index', to: 'pages#index', as: 'public_index'
   get 'pages/game'
+  get 'users/search'
   root 'pages#index'
 
-  resources :users do
+  resources :users, only: :show do
     member do 
       get 'follow'
       get 'unfollow'
