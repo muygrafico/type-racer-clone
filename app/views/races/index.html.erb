@@ -7,13 +7,15 @@
         <%=  @user.name %>
         <%=  @user.id %>
       </p>
-      <p> the best-designed chair won't make up for bad posture. Bad posture is the root of many physical problems. So sit upright and don't slouch. Your back should be straight to support the upper part of your body. </p>
+      <p id="text-to-input">The best-designed chair won't make up for bad posture. Bad posture is the root of many physical problems. So sit upright and don't slouch. Your back should be straight to support the upper part of your body. </p>
       <hr>
 
 
       <div class="form-group">
       <input class="form-control" type="text" rows="3" name="GameInput" id="GameInput" placeholder="Type the text above"></input>
       </div>
+      <a class="btn btn-default stop-time pull-left">STOP TIME</a>
+      <a class="btn btn-default start-time pull-left">START TIME</a>
       <%= link_to "End Race", public_index_path, class: "btn btn-danger pull-right" %>
 
     </div>
