@@ -21,10 +21,19 @@
  @import url('http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300');
 
 
-
-$cream-green-dark: rgb(0,128,128);
-$salmon: rgb(250,128,114);
-$cream-white: rgb(255,248,222);
-$cream-green: rgb(129,216,208);
-$light-poop: rgb(190,155,123);
-$blue: #006681;
+ .game{
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  margin-top: 60px;
+  #sec{ font-size: 18px; background: #959792; color: white; padding: 5px 10px; border-radius: 4px;}
+  #GameInput{ font-size: 18px; height: 50px; margin:20px 0; }
+  #text-to-input{font-size: 18px; }
+  .next-word{
+    background: #313230;
+    color: #4F4F4F;
+    padding: 15px;
+    font-size: 18px;
+    strong{ color: #EEF3EE; }
+  }
+}
