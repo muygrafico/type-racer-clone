@@ -9,7 +9,9 @@ $( document ).ready(function() {
   var strings = word_to_array('#text-to-input');
 
   var Race = function(next_words_p) {
+    this.points = 0;
     this.time = 0;
+    this.viewableNextWords = 20;
     this.next_words_p = next_words_p;
     this.viewHelper(next_words_p);
   }
@@ -17,14 +19,27 @@ $( document ).ready(function() {
   Race.prototype = {
 
    checkWord : function(array, word){
+
     word =  word.replace(/\s/g, '');
     if ( array  == word ) { return true } else { return false }
+
     },
+
     viewHelper : function(){
-      viewHelperText =  "<strong>" + strings[counter]+ "</strong>" + " " + strings[counter + 1] + " " + strings[counter + 2] + " " + strings[counter + 3];
+      var viewHelperText = "";
+      for (var i = 0; i < this.viewableNextWords ; i++) {
+        viewHelperText += strings[this.points + i] + " "
+      };
+
+      // var viewHelperText = strings.slice(this.points , this.viewableNextWords).join(" ");
+      // viewHelperText =  "<strong>" + strings[this.points]+ "</strong>" + " " + strings[this.points + 1] + " " + strings[this.points + 2] + " " + strings[this.points + 3];
+
       $( this.next_words_p ).html( viewHelperText );
+
     },
+
     start : function(){
+
       var that = this;
       window.setInterval(function(){
         that.time += 1000;
@@ -32,43 +47,35 @@ $( document ).ready(function() {
         console.log(elapsed)
       }, 1000);
     },
+
     stop : function(){
+
       clearInterval( this );
       elapsed = Math.floor(this.time / 1000) / 1;
       return elapsed;
+
     }
-}
+  }
 
-userRace = new Race('.next-word');
+  userRace = new Race('.next-word');
 
-$( "body" ).on( "click", ".start-time", function() {
-  userRace.start();
-});
-$( "body" ).on( "click", ".stop-time", function() {
-  console.log( "current time at click: " + userRace.stop() );
-});
+  $( "body" ).on( "click", ".start-time", function() { userRace.start() });
+  $( "body" ).on( "click", ".stop-time", function() { console.log( "current time at click: " + userRace.stop() ) });
 
 
-var counter = 0;
 
+  $("#GameInput").keyup(function(e){
 
-userRace.viewHelper('.next-word');
+    var val = $( this ).val();
 
-$("#GameInput").keyup(function(e){
-
- $('.next-word').html( userRace.viewHelper );
- var val = $( this ).val();
-
- word_validator = userRace.checkWord(strings[counter] , val) ;
+    word_validator = userRace.checkWord(strings[userRace.points] , val) ;
 
     userRace.viewHelper();
     if( e.which == 32  && word_validator == true ) {
       clearInput( $( this ) );
-      counter ++;
-
+      userRace.points ++;
       userRace.viewHelper();
     }
-
   });
 
 });
