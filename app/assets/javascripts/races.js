@@ -8,10 +8,11 @@ $( document ).ready(function() {
 
   var strings = word_to_array('#text-to-input');
 
-  var Race = function(next_words_p) {
+  var Race = function(next_words_p, gameText) {
     this.points = 0;
     this.time = 0;
-    this.viewableNextWords = 20;
+    this.viewableNextWords = 10;
+    this.strings = word_to_array( gameText );
     this.next_words_p = next_words_p;
     this.viewHelper(next_words_p);
   }
@@ -24,15 +25,31 @@ $( document ).ready(function() {
     if ( array  == word ) { return true } else { return false }
 
     },
+    word_to_array : function( textContainer ){
+      return array = $(textContainer).text().split(' ')
+    },
+    limitView: function(){
+      this.stringsLength = this.strings.length;
+      if ( this.stringsLength - this.points < this.viewableNextWords ) {
+        this.viewableNextWords = this.stringsLength - this.points ;
+        // console.log( this.viewableNextWords );
+        if ( this.viewableNextWords == 1 ) {
 
+          console.log('finished');
+        };
+      };
+    },
     viewHelper : function(){
       var viewHelperText = "";
-      for (var i = 0; i < this.viewableNextWords ; i++) {
-        viewHelperText += strings[this.points + i] + " "
-      };
+      this.limitView();
 
-      // var viewHelperText = strings.slice(this.points , this.viewableNextWords).join(" ");
-      // viewHelperText =  "<strong>" + strings[this.points]+ "</strong>" + " " + strings[this.points + 1] + " " + strings[this.points + 2] + " " + strings[this.points + 3];
+      for ( var i = 0; i < this.viewableNextWords ; i++ ) {
+        if ( i == 0 ) {
+          viewHelperText +=  "<strong>" +this.strings[this.points + i] + "</strong> "
+        } else {
+        viewHelperText += this.strings[this.points + i] + " "
+        }
+      };
 
       $( this.next_words_p ).html( viewHelperText );
 
@@ -57,20 +74,21 @@ $( document ).ready(function() {
     }
   }
 
-  userRace = new Race('.next-word');
+  userRace = new Race('.next-word', '#gameText');
 
   $( "body" ).on( "click", ".start-time", function() { userRace.start() });
   $( "body" ).on( "click", ".stop-time", function() { console.log( "current time at click: " + userRace.stop() ) });
 
 
 
-  $("#GameInput").keyup(function(e){
+  $("#gameInput").keyup(function(e){
 
     var val = $( this ).val();
 
-    word_validator = userRace.checkWord(strings[userRace.points] , val) ;
+    word_validator = userRace.checkWord( userRace.strings[ userRace.points ] , val) ;
 
     userRace.viewHelper();
+
     if( e.which == 32  && word_validator == true ) {
       clearInput( $( this ) );
       userRace.points ++;
