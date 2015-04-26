@@ -12,13 +12,17 @@
  *
  */
 
+@import url('http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300');
+
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "font-awesome-sprockets";
  @import "font-awesome";
  @import "devise";
  @import "users";
- @import url('http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300');
+ @import "block-grid";
+ @import "styles";
+ @import "pages";
 
 
  .game{

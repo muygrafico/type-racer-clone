@@ -1,0 +1,76 @@
+.m-bottom-2{ margin-bottom: 2em }
+.block-grid-item{ margin: 0 !important; padding: !important;}
+
+.game{
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  margin-top: 60px;
+  #sec{ font-size: 18px; background: #959792; color: white; padding: 5px 10px; border-radius: 4px;}
+  #GameInput{ font-size: 18px; height: 50px; margin:20px 0; }
+  #text-to-input{font-size: 18px; }
+  .next-word{
+    background: #313230;
+    color: #4F4F4F;
+    padding: 15px;
+    font-size: 18px;
+    strong{ color: #EEF3EE; }
+  }
+}
+
+.public-landing{
+  .gamer{
+    color: white;
+    &.well{
+      background: rgba(0,0,0,0.1);
+      border: none;
+    }
+    figure{
+      width: 75%;
+      margin: 0 auto;
+      img{ margin: 20px auto; }
+    }
+  }
+  .user-card {
+    .btn-default{
+      color: rgb(136, 172, 217);
+      border: 2px solid rgb(136, 172, 217);
+      background: none;
+    }
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #284c79;
+    color: rgb(136, 172, 217);
+    .avatar {
+
+      margin-top: 15px;
+      z-index: 100;
+      img {
+        width: 100px;
+        height: 100px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        border: 5px solid rgba(136, 172, 217, 0.5 );
+      }
+    }
+  }
+}
+
+.hero-unit {
+  padding: 60px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  color: white;
+  background-color: rgba(0,0,0,0.1);
+}
+
+
+
+
+

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'users/search'
   get 'pages/index', to: 'pages#index', as: 'public_index'
+  get '/leaderboard', to: 'pages#leaderboard'
 
   root 'pages#index'
 
@@ -15,12 +16,7 @@ Rails.application.routes.draw do
       get 'unfollow'
     end
   end
-<<<<<<< HEAD
-=======
 
-  devise_for :users, :controllers => { registrations: 'registrations' }
-
->>>>>>> master
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -31,10 +31,16 @@ gem 'font-awesome-sass', '~> 4.3.0'
 
 gem "acts_as_follower"
 
+<<<<<<< HEAD
 gem 'dotenv-rails', :groups => [:development, :test]
 
 gem "omniauth-facebook" 
 
+=======
+gem 'faker', '~> 1.4.3'
+
+gem 'jquery-turbolinks'
+>>>>>>> 19a561ffbc1fa562a15ed6f7f2f4475d3671320a
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
