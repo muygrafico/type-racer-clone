@@ -21,6 +21,8 @@ module TypeRacerClone
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.assets.precompile += %w( races.js )
+    config.assets.precompile += %w( simple-timer.min.js )
     config.active_record.raise_in_transactional_callbacks = true
   end
 end

@@ -2,17 +2,17 @@
 <div class="container">
   <div class="row">
     <div class="game col-lg-6 col-lg-offset-3">
-      <h2>Game</h2>
+      <h3>Game: <span class="timer small" data-seconds-left=3></span><span class="pull-right" id="sec">&nbsp;</span></h3>
+
       <p id="gameText">Quality humor doesn't just deliver one gag and then tax the audience.</p>
-      <hr/>
-      <p id="sec">game starts in : 07sec</p>
+      <!-- <hr/> -->
+
+
       <p class="next-word"></p>
       <div class="form-group">
         <input class="form-control" type="text" rows="3" name="gameInput" disabled='disabled' id="gameInput" placeholder="Type the text above">
       </div>
-      <!-- <a class="btn btn-default stop-time pull-left">STOP TIME</a>
-      <a class="btn btn-default start-time pull-left">START TIME</a> -->
-      <!-- <button type="button" class="btn btn-primary start-game pull-left">START GAME</button> -->
+
       <%= link_to "New Game", races_path, class: "btn btn-primary pull-left hide new-game" %>
       <%= link_to "End Race", public_index_path, class: "btn btn-danger pull-right" %>
 
@@ -21,3 +21,5 @@
 </div>
 
 <%= content_tag :div, class: "userData", data: {user: @user.id } do %><% end %>
+<%= javascript_include_tag "simple-timer.min.js" %>
+<%= javascript_include_tag "races.js" %>
