@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 10.times do |user|
-  User.create(name:Faker::Name.first_name, email:Faker::Internet.email, password:"12345678")
+  User.create(name:Faker::Name.first_name, email:Faker::Internet.email, password:"12345678", avatar:Faker::Avatar.image)
 end
 
 100.times do |races|
@@ -17,3 +17,5 @@ end
 20.times do |followers|
   User.find(rand(1..10)).follow(User.find(rand(1..10)))
 end
+
+
