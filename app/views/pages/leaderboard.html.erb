@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row filterable">
+        <h1 class="leaderboard">Leaderboard</h1>
+        <hr>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Top Scores</h3>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr class="filters">
+                        <th>Position</th>
+                        <th>Name</th>
+                        <th>WPM</th>
+                        <th>Accuracy</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% @races.each do |race| %>
+                    <tr>
+                        <td><%= @counter += 1 %></td>
+                        <td><%= User.find(race.user.id).name %></td>
+                        <td><%= race.wpm %></td>
+                        <td><%= race.accuracy.round(2) %></td>
+                        <td><%= race.created_at.strftime("%d-%m-%Y") %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
