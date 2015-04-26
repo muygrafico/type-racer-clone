@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-2">
+            <h4>Play <i class="fa fa-fw fa-heart text-danger"></i></h4>
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" class="btn btn-default">WPM: <%= average_wpm %></button>
+          <button type="button" class="btn btn-default">Accuracy: <%= average_accuracy %></button>
+          <button type="button" class="btn btn-default">Races <%= current_user.races.count %></button>
+        </div>
+    </div>
+    <hr>
+    <!-- Begin of rows -->
+    <div class="row">
+      <div class="col-xs-offset-2">
+        <h2>Following Feed</h2>
+      </div>
+    </div>
+    <% @races.each do |race| %>
+        <% @followers.each do |follower| %>
+          <% if follower.id == race.user_id %>
+            <div class="row carousel-row">
+              <div class="col-xs-8 col-xs-offset-2 slide-row">
+                <div id="carousel-3" class="carousel slide slide-carousel">
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <img src="<%= follower.avatar %>" alt="Image">
+                    </div>
+                  </div>
+                </div>
+                <div class="slide-content">
+                    <h4><%= follower.name %> | <%= race.created_at.strftime("%b %e, %l:%M %p") %></h4>
+                    <p>
+                        I just played a ChuckNorrisRace and my speed was of <%= race.wpm %>
+                    </p>
+                </div>
+                <div class="slide-footer">
+                    <span class="pull-right buttons">
+                        <%= link_to user_path(follower) do %>
+                          <button class="btn btn-sm btn-default"><i class="fa fa-fw fa-eye"></i> Show Profile</button>
+                        <% end %>
+                    </span>
+                </div>
+              </div>
+            </div>    
+          <% end %>
+        <% end %>
+    <% end %>
+    <!-- End of test -->
+
+</div>
