@@ -8,7 +8,15 @@
               <h2><%= @user.name %></h2>
               <p><strong>Average WPM: </strong> <%= average_wpm %> </p>
               <p><strong>Average accuracy: </strong> <%= average_accuracy %> </p>
-              <p><strong>Rank: </strong></p>
+              <p><strong>Rank: </strong>
+                  <% if average_wpm < 40 %>
+                    Casual Chuck
+                  <% elsif average_wpm.between?(40, 80) %>
+                    Average Chuck
+                  <% else %>
+                    Norris Chuck
+                  <% end %>
+              </p>
           </div>
           <div class="col-xs-12 col-sm-4 text-center">
               <figure>
