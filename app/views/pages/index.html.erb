@@ -4,15 +4,15 @@
   <div class="container">
     <div class="row-fluid">
       <div class="span12">
-        <h1>Hello, world! Full width Hero-unit header</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <h1>ChuckType</h1>
+        <p>Fun way to practice your typing skills while you read jokes of the almighty <strong>Chuck Norris.</strong> </p>
         <% if user_signed_in? %>
-        <%= link_to "PLAY", races_path, class: "btn btn-default" %>
+        <%= link_to "PLAY NOW!", races_path, class: "btn btn-default" %>
         <% else %>
         <p>
-        <%= link_to "New account", new_user_registration_path, class: "btn btn-default btn-lg" %>
-        <%= link_to "Login", new_user_session_path, :class => 'btn btn-default btn-lg' , "data-target" => "#login", "data-toggle" => "modal" %>
-        <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+        <%= link_to "Create user", new_user_registration_path, class: "btn btn-default" %>
+        <%= link_to "Login", new_user_session_path, :class => 'btn btn-default' , "data-target" => "#login", "data-toggle" => "modal" %>
+        <%= link_to "<i class='fa fa-facebook'></i> | Sign in with Facebook".html_safe , user_omniauth_authorize_path(:facebook), class: "btn  btn-social btn-facebook btn-primary" %>
         </p>
         <% end %>
 
@@ -20,7 +20,6 @@
     </div>
   </div>
 </div>
-
 
 <div class="public-landing">
 
@@ -35,7 +34,8 @@
           </figure>
           <div class="content">
             <p><%= race.user.name %><br>
-             Score: <span><%= race.wpm %></span></p>
+             Score: <span><%= race.wpm %></span>
+             </p>
              <p>
              <%= link_to "See profile", user_path(race.user.id), class: "btn btn-default btn-sm" %>
              </p>
