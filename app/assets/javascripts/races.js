@@ -1,10 +1,11 @@
 $( document ).ready(function() {
-  console.log('ITS LOADING RACES.JS');
+  // console.log('ITS LOADING RACES.JS');
 
   var clearInput = function(who){ who.val('') }
   var word_to_array = function( textContainer ){ return array = $(textContainer).text().split(' ')}
 
   var Race = function(next_words_p, gameText,user_id) {
+    this.keystrokeCounter = 0;
     this.points = 0;
     this.time = 0;
     this.user_id = $( '.userData' ).data('user');
@@ -27,8 +28,8 @@ $( document ).ready(function() {
       url: "/races",
       type: "POST",
       data: item,
-      success: function(){console.log("data sent")}
-    })
+    success: function(){/*console.log("data sent")*/}
+  })
   },
   limitView: function(){
     this.stringsLength = this.strings.length;
@@ -66,7 +67,7 @@ $( document ).ready(function() {
       this.timer =  setInterval(function(){
         that.time += 1000;
         that.elapsed = Math.floor(that.time / 1000) / 1;
-        console.log(that.elapsed)
+        // console.log(that.elapsed)
         $("#sec").html( that.elapsed + " <span class='small'>sec</span>" )}, 1000);
     },
     stop : function(){
@@ -79,24 +80,30 @@ $( document ).ready(function() {
     }
   }
 
-  $( "body" ).on( "click", ".start-time", function() { userRace.start() });
-  $( "body" ).on( "click", ".stop-time", function() { console.log( "current time at click: " + userRace.stop() ) });
   $.ajax({
     url: "http://api.icndb.com/jokes/random",
     type: "GET",
     success: function( response ){
       $('#gameText').html(response.value.joke);
       userRace = new Race( '.next-word', '#gameText' );
-      console.log("getting joke");
+      // console.log("getting joke");
     }
   })
+
   $("#gameInput").keyup(function(e){
+    console.log("key:" + e.which);
+    if ( e.which != 16 && e.which != 8 ) {
+      userRace.keystrokeCounter ++;
+      console.log("keystrokes:" + userRace.keystrokeCounter );
+    };
+
+
     var val = $( this ).val();
     word_validator = userRace.checkWord( userRace.strings[ userRace.points ] , val) ;
     userRace.viewHelper();
-    console.log("outside: " + userRace.viewableNextWords );
+
     if( e.which == 32  && word_validator == true && userRace.viewableNextWords != 1 ) {
-      console.log("inside: " + userRace.viewableNextWords );
+
       clearInput( $( this ) );
       userRace.points ++;
       userRace.viewHelper();
