@@ -5,13 +5,14 @@ Rails.application.routes.draw do
   get 'users/search'
   root 'pages#index'
 
+  devise_for :users, :controllers => { registrations: 'registrations', :omniauth_callbacks => "omniauth_callbacks" }
+
   resources :users, only: :show do
     member do 
       get 'follow'
       get 'unfollow'
     end
   end
-  devise_for :users, :controllers => { registrations: 'registrations' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

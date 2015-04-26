@@ -31,7 +31,10 @@ gem 'font-awesome-sass', '~> 4.3.0'
 
 gem "acts_as_follower"
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
 gem "omniauth-facebook" 
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
