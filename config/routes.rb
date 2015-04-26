@@ -1,18 +1,26 @@
 Rails.application.routes.draw do
-  get 'pages/index'
-  get 'pages/index', to: 'pages#index', as: 'public_index'
-  get 'pages/game'
+
+  resources :races , only: [ :index, :create ]
+
   get 'users/search'
+  get 'pages/index', to: 'pages#index', as: 'public_index'
+
   root 'pages#index'
 
   devise_for :users, :controllers => { registrations: 'registrations', :omniauth_callbacks => "omniauth_callbacks" }
 
   resources :users, only: :show do
-    member do 
+    member do
       get 'follow'
       get 'unfollow'
     end
   end
+<<<<<<< HEAD
+=======
+
+  devise_for :users, :controllers => { registrations: 'registrations' }
+
+>>>>>>> master
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
