@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!, :only => [:show]
 
   def show
-    @counter = 0 
+    @counter = 0
     @user = User.find(params[:id])
   end
 
