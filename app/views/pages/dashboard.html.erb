@@ -36,7 +36,9 @@
                 </div>
                 <div class="slide-footer">
                     <span class="pull-right buttons">
-                        <button class="btn btn-sm btn-default"><i class="fa fa-fw fa-eye"></i> Show Profile</button>
+                        <%= link_to user_path(follower) do %>
+                          <button class="btn btn-sm btn-default"><i class="fa fa-fw fa-eye"></i> Show Profile</button>
+                        <% end %>
                     </span>
                 </div>
               </div>
