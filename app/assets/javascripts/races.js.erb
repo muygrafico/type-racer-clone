@@ -37,6 +37,7 @@ limitView: function(){
         if ( this.viewableNextWords < 1 ) {
 
           console.log('finished');
+
           this.elapsed = this.stop();
           wpm = Math.round( ( this.stringsLength / (this.elapsed/60) ) )
           console.log(wpm);
@@ -49,9 +50,11 @@ limitView: function(){
             type: "POST",
             data: item,
             success: function(){
-            console.log("data sent");
+              console.log("data sent");
             }
           })
+
+          $('.new-game').removeClass('hide');
 
         };
       };
@@ -80,7 +83,7 @@ limitView: function(){
         that.time += 1000;
         that.elapsed = Math.floor(that.time / 1000) / 1;
         console.log(that.elapsed)
-        $("#sec").html( that.elapsed + " :segs" );
+        $("#sec").html( that.elapsed + " :sec" );
       }, 1000);
     },
 
@@ -100,7 +103,7 @@ limitView: function(){
   var counterBack = function(count_time){
     var timer = setInterval(function(){
       count_time -- ;
-      $("#sec").html( '0' + count_time );
+      $("#sec").html( 'game starts in : 0' + count_time + "sec" );
       if (count_time == 0 ) {
        clearInterval( timer );
        $("#sec").html( "START!" );
@@ -114,13 +117,28 @@ limitView: function(){
 
   $( "body" ).on( "click", ".start-time", function() { userRace.start() });
   $( "body" ).on( "click", ".stop-time", function() { console.log( "current time at click: " + userRace.stop() ) });
-  $( "body" ).on( "click", ".start-game", function() {
-      // $("#gameInput").prop("disabled", false);
-      counterBack(5);
-    });
+  // $( "body" ).on( "click", ".start-game", function() {
+
+  //     $( this ).prop("disabled", true);
+  //   });
 
 
-  userRace = new Race( '.next-word', '#gameText' );
+
+
+
+  // http://api.icndb.com/jokes/random
+
+  $.ajax({
+    url: "http://api.icndb.com/jokes/random",
+    type: "GET",
+    success: function( response ){
+      $('#gameText').html(response.value.joke);
+      userRace = new Race( '.next-word', '#gameText' );
+      counterBack(7);
+      console.log("getting joke");
+    }
+  })
+
 
 
   $("#gameInput").keyup(function(e){
