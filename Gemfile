@@ -33,7 +33,7 @@ gem "acts_as_follower"
 
 gem 'dotenv-rails', :groups => [:development, :test]
 
-gem "omniauth-facebook" 
+gem "omniauth-facebook"
 
 gem 'faker', '~> 1.4.3'
 
@@ -64,3 +64,4 @@ group :development, :test do
 
 end
 
+gem 'rails_12factor', group: :production
