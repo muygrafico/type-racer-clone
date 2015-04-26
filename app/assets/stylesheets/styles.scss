@@ -1,9 +1,44 @@
 .m-bottom-2{ margin-bottom: 2em }
+.m-dt-2 { margin: 2em 0;}
 .block-grid-item{ margin: 0 !important; padding: !important;}
 
+.hero-unit{
+  .btn-default{ background: none; color: white; border: 2px solid white;}
+}
+.navbar-brand{margin-top: 5px;}
+.dashboard-section{
+  .btn-default{
+   color: rgb(136, 172, 217);
+   border: 2px solid rgb(136, 172, 217);
+   background: none;
+ }
+ hr{ border-top: 1px solid rgba(255,255,255,0.2);}
+}
+.dashboard{
 
+  background: rgba(0,0,0,0.1);
+  border: none;
+  color: white;
 
-.public-landing{
+  .slide-row{
+    background: none;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+  }
+  .slide-content{
+    max-height:none;
+    margin-top: 10px;
+    background: none;
+    h4{font-size: 32px; margin: 0; padding: 0;}
+    .score{font-size:15px; padding: 5px 10px; background: white; color: #4F86BC; border-radius: 6px;}
+    .small{color: white; text-transform: uppercase; font-size: 14px; padding: 3px 6px; border-radius: 4px;}
+  }
+  .well{
+    border: none;
+  }
+}
+
+.public-landing, .user-profile{
   .gamer{
     color: white;
     &.well{
@@ -17,6 +52,7 @@
     }
   }
   .user-card {
+    margin: 0;
     .btn-default{
       color: rgb(136, 172, 217);
       border: 2px solid rgb(136, 172, 217);

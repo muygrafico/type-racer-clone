@@ -5,8 +5,6 @@
       <h3>Game: <span class="timer small" data-seconds-left=7></span><span class="pull-right" id="sec">&nbsp;</span></h3>
 
       <p id="gameText"><%= @joke %></p>
-      <!-- <hr/> -->
-
 
       <p class="next-word"></p>
       <div class="form-group">
@@ -14,7 +12,7 @@
       </div>
 
       <%= link_to "New Game", races_path, class: "btn btn-primary pull-left hide new-game" %>
-      <%= link_to "End Race", public_index_path, class: "btn btn-danger pull-right" %>
+      <%= link_to "End Race", dashboard_path, class: "btn btn-danger pull-right" %>
 
     </div>
   </div>
