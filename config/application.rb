@@ -20,12 +20,10 @@ module TypeRacerClone
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.middleware.use Rack::Cors do
+    config.middleware.insert_before 0, "Rack::Cors" do
       allow do
-        origins 'api.icndb.com'
-        resource %r{/jokes/random/\d+.json},
-          :headers => ['Origin', 'Accept', 'Content-Type'],
-          :methods => [:get]
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get]
       end
     end
 
