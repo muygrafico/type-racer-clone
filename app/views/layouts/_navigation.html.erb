@@ -1,0 +1,40 @@
+<nav class="navbar  navbar-default">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to '<strong>ChuckNorris</strong>Racer'.html_safe , root_path, class: "navbar-brand" %>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="pull-right">
+        <% if user_signed_in? %>
+        <span class="dropdown">
+          <a class="dropdown-toggle" id="menu1" data-toggle="dropdown">
+            <strong><%= current_user.email %></strong>
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <li role="presentation"><%= link_to 'Edit profile', edit_user_registration_path %></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><%= link_to 'Dashboard', user_path(current_user) %></li>
+              <li role="presentation"><%= link_to 'My profile', user_path(current_user) %></li>
+
+            </ul>
+          </span>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-default navbar-btn"  %>
+          <% else %>
+          <%= link_to "create user", new_user_registration_path, class: "btn btn-default navbar-btn" %>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-default navbar-btn" %>
+          <% end %>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+

@@ -1,20 +1,6 @@
 .m-bottom-2{ margin-bottom: 2em }
 .block-grid-item{ margin: 0 !important; padding: !important;}
-.navbar-text{
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  height: 60px;
-  line-height: 60px;
 
-  text-align: right;
-  border: 1px solid #FFF;
-  margin: 0;
-  padding: 0;
-  div {
-    margin-right: 20px;
-  }
-}
 .game{
   background: white;
   padding: 40px;
@@ -45,32 +31,45 @@
       img{ margin: 20px auto; }
     }
   }
-}
+  .user-card {
+    .btn-default{
+      color: rgb(136, 172, 217);
+      border: 2px solid rgb(136, 172, 217);
+      background: none;
+    }
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #284c79;
+    color: rgb(136, 172, 217);
+    .avatar {
 
-
-.card {
-
-  border: none;
-  border-radius: 8px;
-  text-align: center;
-  margin: 0;
-
-  background-color: #284c79;
-  color: rgb(136, 172, 217);
-  .avatar {
-
-    margin-top: 15px;
-    z-index: 100;
-    img {
-      width: 100px;
-      height: 100px;
-      -webkit-border-radius: 50%;
-      -moz-border-radius: 50%;
-      border-radius: 50%;
-      border: 5px solid rgba(136, 172, 217, 0.5 );
+      margin-top: 15px;
+      z-index: 100;
+      img {
+        width: 100px;
+        height: 100px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        border: 5px solid rgba(136, 172, 217, 0.5 );
+      }
     }
   }
 }
+
+.hero-unit {
+  padding: 60px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  color: white;
+  background-color: rgba(0,0,0,0.1);
+}
+
 
 
 
