@@ -85,7 +85,7 @@ $( document ).ready(function() {
   }
 
   $.ajax({
-    url: "http://api.icndb.com/jokes/random.jsonp",
+    url: "//api.icndb.com/jokes/random.jsonp",
     type: "GET",
     success: function( response ){
       $('#gameText').html(response.value.joke);
