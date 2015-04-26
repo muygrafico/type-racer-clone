@@ -39,6 +39,8 @@ $( document ).ready(function() {
       this.viewableNextWords = this.stringsLength - this.points ;
       if ( this.viewableNextWords < 1 ) {
           // console.log('finished');
+          $(".timer").html( "YOU FINISHED" );
+
           console.log("Accuracy: " + accuracy(this.textLength, this.keystrokeCounter));
           $("#gameInput").prop("disabled", true );
           this.elapsed = this.stop();
@@ -84,61 +86,63 @@ $( document ).ready(function() {
     }
   }
 
-  $.ajax({
-    url: "http://api.icndb.com/jokes/random",
-    type: "GET",
-    success: function( response ){
-      $('#gameText').html(response.value.joke);
-      userRace = new Race( '.next-word', '#gameText', response.value.joke.length );
-      // console.log("getting joke");
-    }
-  })
+  // $.ajax({
+  //   url: "http://api.icndb.com/jokes/random",
+  //   type: "GET",
+  //   success: function( response ){
+  //     $('#gameText').html(response.value.joke);
+  //     userRace = new Race( '.next-word', '#gameText', response.value.joke.length );
+  //     // console.log("getting joke");
+  //   }
+  // })
+
 
   function strip(number) {
    return (parseFloat(number.toPrecision(12)));
+ }
+
+ var accuracy = function(text_length, counter){
+  var part1 = text_length - (counter - text_length )
+  part2 = part1 / text_length;
+  return (part2 * 100).toFixed(2) ;
 }
 
-  var accuracy = function(text_length, counter){
-    var part1 = text_length - (counter - text_length )
-    part2 = part1 / text_length;
-    return (part2 * 100).toFixed(2) ;
-  }
-
-  $("#gameInput").keyup(function(e){
-    console.log("key:" + e.which);
-    if ( e.which != 16 && e.which != 8 ) {
-      userRace.keystrokeCounter ++;
-      console.log("keystrokes:" + userRace.keystrokeCounter );
-    };
+$("#gameInput").keyup(function(e){
+  console.log("key:" + e.which);
+  if ( e.which != 16 && e.which != 8 ) {
+    userRace.keystrokeCounter ++;
+    console.log("keystrokes:" + userRace.keystrokeCounter );
+  };
 
 
-    var val = $( this ).val();
-    word_validator = userRace.checkWord( userRace.strings[ userRace.points ] , val) ;
+  var val = $( this ).val();
+  word_validator = userRace.checkWord( userRace.strings[ userRace.points ] , val) ;
+  userRace.viewHelper();
+
+  if( e.which == 32  && word_validator == true && userRace.viewableNextWords != 1 ) {
+
+    clearInput( $( this ) );
+    userRace.points ++;
     userRace.viewHelper();
 
-    if( e.which == 32  && word_validator == true && userRace.viewableNextWords != 1 ) {
+  } else if ( userRace.viewableNextWords == 1 && word_validator ){
+    clearInput( $( this ) );
+    userRace.points ++;
+    userRace.viewHelper();
 
-      clearInput( $( this ) );
-      userRace.points ++;
-      userRace.viewHelper();
-
-    } else if ( userRace.viewableNextWords == 1 && word_validator ){
-      clearInput( $( this ) );
-      userRace.points ++;
-      userRace.viewHelper();
-
-    }
-  });
+  }
+});
 
 
 
-  $('.timer').startTimer({ onComplete: function(element){
-    element.addClass('is-complete')
-    $(".timer").html( "START!" );
-    $("#gameInput").prop("disabled", false);
-    $("#gameInput").focus();
-    userRace.start();
-  } });
+$('.timer').startTimer({ onComplete: function(element){
+  element.addClass('is-complete')
+  $(".timer").html( "START!" );
+  $("#gameInput").prop("disabled", false);
+  $("#gameInput").focus();
+  userRace = new Race( '.next-word', '#gameText', $('#gameText').length );
+  userRace.start();
+} });
 
 console.log(accuracy(78,90));
 

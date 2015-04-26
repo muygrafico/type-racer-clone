@@ -2,6 +2,10 @@ class RacesController < ApplicationController
   before_filter :authenticate_user! , only: [:index,:create]
   def index
     @user = current_user
+    joke = HTTParty.get('http://api.icndb.com/jokes/random')
+    joke.each do | info |
+      @joke = info[1]['joke']
+    end
   end
 
   def create
