@@ -4,15 +4,17 @@ $( document ).ready(function() {
   var clearInput = function(who){ who.val('') }
   var word_to_array = function( textContainer ){ return array = $(textContainer).text().split(' ')}
 
-  var Race = function(next_words_p, gameText,user_id) {
+  var Race = function(next_words_p, gameText,text_length) {
     this.keystrokeCounter = 0;
     this.points = 0;
     this.time = 0;
     this.user_id = $( '.userData' ).data('user');
     this.viewableNextWords = 12;
+    this.textLength = text_length;
     this.strings = word_to_array( gameText );
     this.next_words_p = next_words_p;
     this.viewHelper(next_words_p);
+    // console.log(this.textLength);
   }
 
   Race.prototype = {
@@ -37,12 +39,14 @@ $( document ).ready(function() {
       this.viewableNextWords = this.stringsLength - this.points ;
       if ( this.viewableNextWords < 1 ) {
           // console.log('finished');
+          console.log("Accuracy: " + accuracy(this.textLength, this.keystrokeCounter));
           $("#gameInput").prop("disabled", true );
           this.elapsed = this.stop();
+          this.accuracy = accuracy(this.textLength, this.keystrokeCounter);
           wpm = Math.round( ( this.stringsLength / (this.elapsed/60) ) )
 
           $("#sec").html( "WPM: " + wpm );
-          this.item = { race: {"wpm" : wpm, "accuracy" : 0, "finished_time": this.elapsed, "user_id": this.user_id }};
+          this.item = { race: {"wpm" : wpm, "accuracy" : this.accuracy, "finished_time": this.elapsed, "user_id": this.user_id }};
           this.sendGameData( this.item );
           $('.new-game').removeClass('hide');
         };
@@ -85,10 +89,20 @@ $( document ).ready(function() {
     type: "GET",
     success: function( response ){
       $('#gameText').html(response.value.joke);
-      userRace = new Race( '.next-word', '#gameText' );
+      userRace = new Race( '.next-word', '#gameText', response.value.joke.length );
       // console.log("getting joke");
     }
   })
+
+  function strip(number) {
+   return (parseFloat(number.toPrecision(12)));
+}
+
+  var accuracy = function(text_length, counter){
+    var part1 = text_length - (counter - text_length )
+    part2 = part1 / text_length;
+    return (part2 * 100).toFixed(2) ;
+  }
 
   $("#gameInput").keyup(function(e){
     console.log("key:" + e.which);
@@ -126,6 +140,6 @@ $( document ).ready(function() {
     userRace.start();
   } });
 
-
+console.log(accuracy(78,90));
 
 });
