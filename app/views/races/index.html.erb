@@ -2,10 +2,12 @@
 <div class="container">
   <div class="row">
     <div class="game col-lg-6 col-lg-offset-3">
-      <h2>Game</h2>
+      <h2>Game: <span class="timer small" data-seconds-left=7></span></h2>
+
       <p id="gameText">Quality humor doesn't just deliver one gag and then tax the audience.</p>
       <hr/>
-      <p id="sec">game starts in : 07sec</p>
+      <p id="sec">&nbsp;</p>
+
       <p class="next-word"></p>
       <div class="form-group">
         <input class="form-control" type="text" rows="3" name="gameInput" disabled='disabled' id="gameInput" placeholder="Type the text above">
@@ -21,3 +23,5 @@
 </div>
 
 <%= content_tag :div, class: "userData", data: {user: @user.id } do %><% end %>
+<%= javascript_include_tag "simple-timer.min.js" %>
+<%= javascript_include_tag "races.js" %>
