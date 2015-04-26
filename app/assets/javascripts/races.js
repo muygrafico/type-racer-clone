@@ -36,6 +36,7 @@ $( document ).ready(function() {
       this.viewableNextWords = this.stringsLength - this.points ;
       if ( this.viewableNextWords < 1 ) {
           // console.log('finished');
+          $("#gameInput").prop("disabled", true );
           this.elapsed = this.stop();
           wpm = Math.round( ( this.stringsLength / (this.elapsed/60) ) )
 
@@ -86,7 +87,6 @@ $( document ).ready(function() {
     success: function( response ){
       $('#gameText').html(response.value.joke);
       userRace = new Race( '.next-word', '#gameText' );
-      userRace.counterBack(7);
       console.log("getting joke");
     }
   })
@@ -94,10 +94,18 @@ $( document ).ready(function() {
     var val = $( this ).val();
     word_validator = userRace.checkWord( userRace.strings[ userRace.points ] , val) ;
     userRace.viewHelper();
-    if( e.which == 32  && word_validator == true ) {
+    console.log("outside: " + userRace.viewableNextWords );
+    if( e.which == 32  && word_validator == true && userRace.viewableNextWords != 1 ) {
+      console.log("inside: " + userRace.viewableNextWords );
       clearInput( $( this ) );
       userRace.points ++;
       userRace.viewHelper();
+
+    } else if ( userRace.viewableNextWords == 1 && word_validator ){
+      clearInput( $( this ) );
+      userRace.points ++;
+      userRace.viewHelper();
+
     }
   });
 
