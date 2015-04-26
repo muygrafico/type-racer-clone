@@ -1,15 +1,4 @@
 
-<div class="container">
-  <h1>Pages#index</h1>
-  <p>Find me in app/views/pages/index.html.erb</p> 
-  <% if user_signed_in? %>
-  <%= link_to "PLAY", races_path, class: "btn btn-default btn-lg" %>
-  <% else %>
-  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-  <%= link_to "New account", new_user_registration_path, class: "btn btn-default btn-lg" %>
-  <a class="btn btn-default btn-lg btn-login" data-toggle="modal" data-target="#login">Login</a>
-  <% end %>
-</div>
 
 <div class="hero-unit">
   <div class="container">
@@ -23,6 +12,7 @@
         <p>
         <%= link_to "New account", new_user_registration_path, class: "btn btn-default btn-lg" %>
         <%= link_to "Login", new_user_session_path, :class => 'btn btn-default btn-lg' , "data-target" => "#login", "data-toggle" => "modal" %>
+        <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
         </p>
         <% end %>
 
