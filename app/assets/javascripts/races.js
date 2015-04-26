@@ -8,7 +8,7 @@ $( document ).ready(function() {
     this.points = 0;
     this.time = 0;
     this.user_id = $( '.userData' ).data('user');
-    this.viewableNextWords = 10;
+    this.viewableNextWords = 12;
     this.strings = word_to_array( gameText );
     this.next_words_p = next_words_p;
     this.viewHelper(next_words_p);
