@@ -24,5 +24,6 @@ module TypeRacerClone
     config.assets.precompile += %w( races.js )
     config.assets.precompile += %w( simple-timer.min.js )
     config.active_record.raise_in_transactional_callbacks = true
+    config.middleware.use Rack::JSONP
   end
 end
