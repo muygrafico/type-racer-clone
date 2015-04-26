@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'users/search'
   get 'pages/index', to: 'pages#index', as: 'public_index'
+  get '/leaderboard', to: 'pages#leaderboard'
 
   root 'pages#index'
 

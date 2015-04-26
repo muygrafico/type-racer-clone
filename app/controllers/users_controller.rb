@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def show
+    @counter = 0 
     @user = User.find(params[:id])
   end
 

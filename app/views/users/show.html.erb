@@ -96,6 +96,35 @@
       </div>
     </div>
   </div>
-
+  
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-md-offset-3">
+      <div class="thumbnail">
+        <div class="caption">
+          <h3>Top 10 races</h3>
+          <% if @user.races.count == 0 %>
+            <p>You haven't raced yet :(</p>
+          <% else %>
+            <table class="table">
+              <tr>
+                <th>#</th>
+                <th>WPM</th>
+                <th>Accuracy</th>
+                <th>Date</th>
+              </tr>
+              <% @user.races.order(wpm: :desc)[0..10].each do |race| %>
+                <tr>
+                  <td><%= @counter += 1 %></td>
+                  <td><%= race.wpm %></td>
+                  <td><%= race.accuracy.round(2) %>%</td>
+                  <td><%= race.created_at.strftime("%d-%m-%Y") %></td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
