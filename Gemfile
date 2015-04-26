@@ -39,6 +39,9 @@ gem 'faker', '~> 1.4.3'
 
 gem 'jquery-turbolinks'
 
+gem 'rack-jsonp-middleware',
+  :require => 'rack/jsonp'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
