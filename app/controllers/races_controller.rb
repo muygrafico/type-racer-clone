@@ -4,8 +4,10 @@ class RacesController < ApplicationController
     @user = current_user
     joke = HTTParty.get('http://api.icndb.com/jokes/random')
     joke.each do | info |
-      @joke = info[1]['joke']
+      @joke = info[1]['joke'].to_s.html_safe
     end
+    puts @joke
+
   end
 
   def create
