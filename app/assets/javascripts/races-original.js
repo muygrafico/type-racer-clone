@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-
+  console.log("ChuckType Engine V0.3b");
   var clearInput = function(who){ who.val('') }
 
   var Race = function( next_words, gameText) {
@@ -89,8 +89,8 @@ $( document ).ready(function() {
   return (part2 * 100).toFixed(2) ;
 }
 
-$("#gameInput").keyup(function(e){
-
+$("#gameInput").keypress(function(e){
+  console.log("keypress");
   if ( e.which != 16 && e.which != 8 ) {
     userRace.keystrokeCounter ++;
   };
