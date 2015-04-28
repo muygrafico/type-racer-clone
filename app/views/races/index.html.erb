@@ -2,13 +2,13 @@
 <div class="container">
   <div class="row">
     <div class="game col-lg-6 col-lg-offset-3">
-      <h3>Game: <span class="timer small" data-seconds-left=7></span><span class="pull-right" id="sec">&nbsp;</span></h3>
+      <h3>Game: <span class="timer small" data-seconds-left=1></span><span class="pull-right" id="sec">&nbsp;</span></h3>
 
       <p id="gameText"><%= @joke %></p>
 
       <p class="next-word"></p>
       <div class="form-group">
-        <input class="form-control" type="text" rows="3" name="gameInput" disabled='disabled' id="gameInput" placeholder="Type the text above">
+        <input class="form-control" type="text" name="gameInput" disabled='disabled' id="gameInput" placeholder="Type the text above">
       </div>
 
       <%= link_to "New Game", races_path, class: "btn btn-primary pull-left hide new-game" %>
