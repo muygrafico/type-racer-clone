@@ -89,8 +89,7 @@ $( document ).ready(function() {
   return (part2 * 100).toFixed(2) ;
 }
 
-$("#gameInput").keypress(function(e){
-  console.log("keypress");
+$("#gameInput").keydown(function(e){
   if ( e.which != 16 && e.which != 8 ) {
     userRace.keystrokeCounter ++;
   };
