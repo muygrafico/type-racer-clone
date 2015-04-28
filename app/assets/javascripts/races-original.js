@@ -118,16 +118,18 @@ $("#gameInput").keyup(function(e){
   word_validator = userRace.checkWord( userRace.strings[ userRace.points ] , val) ;
   userRace.viewHelper();
 
-  if( e.which == 32  && word_validator == true && userRace.viewableNextWords != 1 ) {
-
-    clearInput( $( this ) );
-    userRace.points ++;
-    userRace.viewHelper();
-
-  } else if ( userRace.viewableNextWords == 1 && word_validator ){
-    clearInput( $( this ) );
-    userRace.points ++;
-    userRace.viewHelper();
+  if( e.which == 32  && userRace.viewableNextWords != 1 ) {
+    if ( word_validator == true ){
+      clearInput( $( this ) );
+      userRace.points ++;
+      userRace.viewHelper();
+    }
+  } else if ( userRace.viewableNextWords == 1 ){
+    if ( word_validator == true ){
+      clearInput( $( this ) );
+      userRace.points ++;
+      userRace.viewHelper();
+    }
 
   }
 });
